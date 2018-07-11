@@ -103,6 +103,7 @@
 
 <script>
 import Backends from '@/services/backend'
+// import Utils from '@/utils/index'
 export default {
   name: 'Index',
   data () {
@@ -144,8 +145,16 @@ export default {
       // 构造请求post报文
       Backends.addBizPipeline(this.newLine, res => {
         console.log(res)
+        this.$message('添加线索成功')
+        // 清空输入
+        this.newLine = {
+          topic: '',
+          status: '',
+          inChargeUser: ''
+        }
       }, res => {
         console.log(res)
+        this.$message('添加线索失败')
       })
     }
   }
