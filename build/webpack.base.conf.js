@@ -68,7 +68,7 @@ module.exports = {
         }
       },
       {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        test: /\.(woff2?|eot|ttf|otf|woff)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
@@ -81,7 +81,8 @@ module.exports = {
       },
       {
         test:/\.css$/,
-        loader:'css-loader!style-loader',
+        loader:'style-loader!css-loader',
+        exclude: /node_modules/
       }
     ]
   },

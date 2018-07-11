@@ -16,12 +16,12 @@
       </el-header>
       <el-main class="july-main">
         <div class="wrap clearfix">
-          <div style="margin-top: 20px;">
+          <div style="margin: 30px 0 50px 0;">
             <el-row :gutter="10">
-              <el-col :xs="8" :sm="6" :md="12" :lg="12" :xl="1">
+              <el-col :xs="24" :sm="6" :md="12" :lg="12" :xl="12">
                 <el-input v-model="newLine.topic" placeholder="请输入商务线索,^_^"></el-input>
               </el-col>
-              <el-col :xs="4" :sm="6" :md="4" :lg="4" :xl="11">
+              <el-col :xs="24" :sm="6" :md="4" :lg="4" :xl="4">
                 <el-select v-model="newLine.status" placeholder="请选择状态">
                   <el-option
                     v-for="item in statusOptions"
@@ -31,10 +31,10 @@
                   </el-option>
                 </el-select>
               </el-col>
-              <el-col :xs="4" :sm="6" :md="4" :lg="4" :xl="11">
+              <el-col :xs="24" :sm="6" :md="4" :lg="4" :xl="4">
                 <el-input v-model="newLine.inChargeUser" placeholder="请输入负责人"></el-input>
               </el-col>
-              <el-col :xs="8" :sm="6" :md="4" :lg="4" :xl="1">
+              <el-col :xs="24" :sm="6" :md="4" :lg="4" :xl="4" style="margin: 6px 0 0 0;padding-left: 10px;">
                 <el-button type="primary" icon="el-icon-plus" size="small" @click="addPipeline">添加线索</el-button>
               </el-col>
             </el-row>
@@ -102,6 +102,7 @@
 </template>
 
 <script>
+import Backends from '@/services/backend'
 export default {
   name: 'Index',
   data () {
@@ -119,12 +120,12 @@ export default {
         label: 'K2',
         value: 'K2'
       }],
-      bizLines: [{
-        topic: '商务线8888888',
-        status: 'K2',
-        createdOn: '2018-08-08 12:12:12'
-      }]
+      bizLines: []
     }
+  },
+  mounted () {
+    // 挂载成功后获取商务线列表
+    this.bizLines = Backends.getBizLines()
   },
   methods: {
     handleSelect (key, keyPath) {
@@ -140,36 +141,12 @@ export default {
       console.log(index, row)
     },
     addPipeline () {
-      const h = this.$createElement
-      this.$msgbox({
-        title: '添加Pipeline',
-        message: h('p', null, [
-          h('span', null, '内容可以是 '),
-          h('i', { style: 'color: teal' }, 'VNode')
-        ]),
-        showCancelButton: true,
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        beforeClose: (action, instance, done) => {
-          if (action === 'confirm') {
-            instance.confirmButtonLoading = true
-            instance.confirmButtonText = '执行中...'
-            setTimeout(() => {
-              done()
-              setTimeout(() => {
-                instance.confirmButtonLoading = false
-              }, 300)
-            }, 3000)
-          } else {
-            done()
-          }
-        }
-      }).then(action => {
-        this.$message({
-          type: 'info',
-          message: 'action: ' + action
-        })
-      }) // -- end
+      // 构造请求post报文
+      Backends.addBizPipeline(this.newLine, res => {
+        console.log(res)
+      }, res => {
+        console.log(res)
+      })
     }
   }
 }
