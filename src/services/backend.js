@@ -6,24 +6,23 @@ export default {
    * 获取商务线列表
    * @returns {*[]}
    */
-  getBizLines () {
-    console.log(Settings.apiGateway.addBizLine)
-    return [{
-      topic: '商务线8888888',
-      status: 'K2',
-      createdOn: '2018-08-08 12:12:12'
-    }]
+  getBizLines (uri, success, exp) {
+    Vue.axios({
+      method: 'get',
+      url: uri,
+      data: {}
+    }).then(success).catch(exp)
   },
 
   /**
    * 增加商务线
    */
   addBizPipeline (data, success, exception) {
-    console.debug('Action: 添加一条商务线, data: {}, backendUrl: {}', data, Settings.apiGateway.addBizLine)
+    console.debug('Action: 添加一条商务线, data: {}, backendUrl: {}', data, Settings.apiGateway.addBizLineUri)
     // Send request
     Vue.axios({
       method: 'post',
-      url: Settings.apiGateway.addBizLine,
+      url: Settings.apiGateway.addBizLineUri,
       data: data
     }).then(success).catch(exception)
     return true

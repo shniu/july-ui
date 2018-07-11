@@ -73,8 +73,8 @@
               </template>
             </el-table-column>
             <el-table-column
-              label="创建时间"
-              prop="createdOn">
+              label="负责人"
+              prop="inChargeUser">
             </el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
@@ -103,6 +103,7 @@
 
 <script>
 import Backends from '@/services/backend'
+import Settings from '@/settings'
 // import Utils from '@/utils/index'
 export default {
   name: 'Index',
@@ -126,9 +127,17 @@ export default {
   },
   mounted () {
     // 挂载成功后获取商务线列表
-    this.bizLines = Backends.getBizLines()
+    this.refreshBizPipelines()
   },
   methods: {
+    refreshBizPipelines () {
+      let uri = Settings.apiGateway.getBizLinesUri + '/0/10'
+      Backends.getBizLines(uri, res => {
+        this.bizLines = res.data.data.lines
+      }, res => {
+        this.$message('获取列表数据失败')
+      })
+    },
     handleSelect (key, keyPath) {
       console.log(key, keyPath)
     },
@@ -152,6 +161,7 @@ export default {
           status: '',
           inChargeUser: ''
         }
+        this.refreshBizPipelines()
       }, res => {
         console.log(res)
         this.$message('添加线索失败')
