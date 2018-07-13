@@ -63,7 +63,7 @@
               prop="status"
               label="状态"
               width="100"
-              :filters="[{ text: 'K1', value: 'K1' }, { text: 'K2', value: 'K2' }]"
+              :filters="statusOptions"
               :filter-method="filterTag"
               filter-placement="bottom-end">
               <template slot-scope="scope">
@@ -78,9 +78,9 @@
             </el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
-                <el-button
+                <!--<el-button
                   size="mini"
-                  @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                  @click="handleEdit(scope.$index, scope.row)">编辑</el-button>-->
                 <el-button
                   size="mini"
                   type="danger"
@@ -88,6 +88,9 @@
               </template>
             </el-table-column>
           </el-table>
+          <div class="load-more">
+            <el-button type="text">加载更多</el-button>
+          </div>
         </div>
       </el-main>
       <el-footer>
@@ -115,13 +118,9 @@ export default {
         status: '',
         inChargeUser: ''
       },
-      statusOptions: [{
-        label: 'K1',
-        value: 'K1'
-      }, {
-        label: 'K2',
-        value: 'K2'
-      }],
+      statusOptions: [{label: 'K1', value: 'K1', text: 'K1'}, {label: 'K2', value: 'K2', text: 'K2'}, {label: 'K3', value: 'K3', text: 'K3'},
+        {label: 'K4', value: 'K4', text: 'K4'}, {label: 'K5', value: 'K5', text: 'K5'}, {label: 'K6', value: 'K6', text: 'K6'},
+        {label: 'K7', value: 'K7', text: 'K7'}, {label: 'K8', value: 'K8', text: 'K8'}],
       bizLines: []
     }
   },
@@ -148,7 +147,13 @@ export default {
       console.log(index, row)
     },
     handleDelete (index, row) {
-      console.log(index, row)
+      const bizId = row.bizId
+      Backends.deleteBizLine(bizId, res => {
+        this.$message('删除成功')
+        this.refreshBizPipelines()
+      }, res => {
+        this.$message('删除失败')
+      })
     },
     addPipeline () {
       // 构造请求post报文

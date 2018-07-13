@@ -6,7 +6,8 @@ const settings = {
   },
   apiGateway: {
     addBizLineUri: '/api/v1/pipeline/info',
-    getBizLinesUri: '/api/v1/pipeline/list'
+    getBizLinesUri: '/api/v1/pipeline/list',
+    deleteBizLineUri: '/api/v1/pipeline/info'
   }
 }
 

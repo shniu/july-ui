@@ -26,5 +26,16 @@ export default {
       data: data
     }).then(success).catch(exception)
     return true
+  },
+
+  /**
+   * 删除商务线
+   */
+  deleteBizLine (bizId, success, exp) {
+    Vue.axios({
+      method: 'delete',
+      url: Settings.apiGateway.deleteBizLineUri + '/' + bizId,
+      data: {}
+    }).then(success).catch(exp)
   }
 }
