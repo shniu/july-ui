@@ -12,11 +12,13 @@ import Vuex from 'vuex'
 import filters from './filters'
 import Settings from './settings'
 import {Getitem, Removeitem} from './services/common'
+import VueLodash from 'vue-lodash'
 
 Vue.use(VueAxios, axios)
 Vue.use(ElementUI)
 Vue.use(Vuex)
 Vue.use(filters)
+Vue.use(VueLodash, {name: 'lodash'})
 
 Vue.config.productionTip = false
 

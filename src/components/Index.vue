@@ -66,7 +66,7 @@
                     </timeline>
                   </el-col>
                   <el-col :span="12">
-                    <timeline>
+                    <!--<timeline>
                       <timeline-title>2018-08-11 12:12:23</timeline-title>
                       <timeline-item bg-color="#9dd8e0">与中银老总碰面，初步达成合作一项</timeline-item>
                       <timeline-item :hollow="true">开始接触，寻找到关键人xxx</timeline-item>
@@ -75,7 +75,8 @@
                       <timeline-item bg-color="#9dd8e0">与中银老总碰面，初步达成合作一项</timeline-item>
                       <timeline-item :hollow="true">开始接触，寻找到关键人xxx</timeline-item>
                       <timeline-item bg-color="#9dd8e0">与中银老总碰面，初步达成合作一项</timeline-item>
-                    </timeline>
+                    </timeline>-->
+                    <todo v-bind:bizId="props.row.bizId"></todo>
                   </el-col>
                 </el-row>
               </template>
@@ -136,13 +137,15 @@
 import Backends from '@/services/backend'
 import Settings from '@/settings'
 import {Timeline, TimelineItem, TimelineTitle} from 'vue-cute-timeline'
+import Todo from '@/components/todo/Index'
 // import Utils from '@/utils/index'
 export default {
   name: 'Index',
   components: {
     Timeline,
     TimelineItem,
-    TimelineTitle
+    TimelineTitle,
+    Todo
   },
   data () {
     return {
