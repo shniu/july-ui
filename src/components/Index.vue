@@ -45,14 +45,39 @@
             style="width: 100%">
             <el-table-column type="expand">
               <template slot-scope="props">
-                <el-form label-position="left" inline class="demo-table-expand">
+                <!--<el-form label-position="left" inline class="demo-table-expand">
                   <el-form-item label="商务线主题">
                     <span>{{ props.row.topic }}</span>
                   </el-form-item>
                   <el-form-item label="状态">
                     <span>{{ props.row.status }}</span>
                   </el-form-item>
-                </el-form>
+                </el-form>-->
+                <el-row :gutter="20">
+                  <el-col :span="12">
+                    <timeline>
+                      <timeline-title>2018-08-11 12:12:23</timeline-title>
+                      <timeline-item bg-color="#9dd8e0">与中银老总碰面，初步达成合作一项</timeline-item>
+                      <timeline-item :hollow="true">开始接触，寻找到关键人xxx</timeline-item>
+                      <timeline-item bg-color="#9dd8e0">与中银老总碰面，初步达成合作一项</timeline-item>
+                      <timeline-item :hollow="true">开始接触，寻找到关键人xxx</timeline-item>
+                      <timeline-item bg-color="#9dd8e0">与中银老总碰面，初步达成合作一项</timeline-item>
+                      <timeline-item :hollow="true">开始接触，寻找到关键人xxx</timeline-item>
+                    </timeline>
+                  </el-col>
+                  <el-col :span="12">
+                    <timeline>
+                      <timeline-title>2018-08-11 12:12:23</timeline-title>
+                      <timeline-item bg-color="#9dd8e0">与中银老总碰面，初步达成合作一项</timeline-item>
+                      <timeline-item :hollow="true">开始接触，寻找到关键人xxx</timeline-item>
+                      <timeline-item bg-color="#9dd8e0">与中银老总碰面，初步达成合作一项</timeline-item>
+                      <timeline-title>2018-08-10 12:12:23</timeline-title>
+                      <timeline-item bg-color="#9dd8e0">与中银老总碰面，初步达成合作一项</timeline-item>
+                      <timeline-item :hollow="true">开始接触，寻找到关键人xxx</timeline-item>
+                      <timeline-item bg-color="#9dd8e0">与中银老总碰面，初步达成合作一项</timeline-item>
+                    </timeline>
+                  </el-col>
+                </el-row>
               </template>
             </el-table-column>
             <el-table-column
@@ -78,13 +103,16 @@
             </el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
-                <!--<el-button
-                  size="mini"
-                  @click="handleEdit(scope.$index, scope.row)">编辑</el-button>-->
                 <el-button
                   size="mini"
                   type="danger"
                   @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                <el-button
+                  size="mini"
+                  @click="handleEdit(scope.$index, scope.row)">添加进展</el-button>
+                <el-button
+                  size="mini"
+                  @click="handleEdit(scope.$index, scope.row)">添加todo</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -107,9 +135,15 @@
 <script>
 import Backends from '@/services/backend'
 import Settings from '@/settings'
+import {Timeline, TimelineItem, TimelineTitle} from 'vue-cute-timeline'
 // import Utils from '@/utils/index'
 export default {
   name: 'Index',
+  components: {
+    Timeline,
+    TimelineItem,
+    TimelineTitle
+  },
   data () {
     return {
       activeIndex: '1',
