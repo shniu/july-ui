@@ -1,9 +1,14 @@
 
+const env = process.env.NODE_ENV
+console.log('================' + env)
+let domain = 'http://localhost:7099'
+if (env === 'production') {
+  domain = 'https://july-api.chaintech.info'
+}
+
 const settings = {
   domain: {
-    // domain: 'http://192.168.1.118:7099'
-    domain: 'http://localhost:7099'
-    // domain: 'http://192.168.100.166:7099'
+    domain: domain
   },
   apiGateway: {
     addBizLineUri: '/api/v1/pipeline/info',
