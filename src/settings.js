@@ -1,6 +1,5 @@
 
 const env = process.env.NODE_ENV
-console.log('================' + env)
 let domain = 'http://localhost:7099'
 if (env === 'production') {
   domain = 'https://july-api.chaintech.info'
