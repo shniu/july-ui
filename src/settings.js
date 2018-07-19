@@ -22,6 +22,9 @@ const settings = {
   },
   responseCode: {
     succeed: 0
+  },
+  constant: {
+    lsTokenName: 'TOKEN_ID'
   }
 }
 
