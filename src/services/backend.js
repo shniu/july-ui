@@ -7,6 +7,17 @@ export default {
   },
 
   /**
+   * 登录
+   */
+  login (loginForm, success, exp) {
+    Vue.axios({
+      method: 'post',
+      url: Settings.apiGateway.loginUri,
+      data: loginForm
+    }).then(success).catch(exp)
+  },
+
+  /**
    * 获取商务线列表
    * @returns {*[]}
    */

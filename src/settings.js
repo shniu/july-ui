@@ -10,6 +10,7 @@ const settings = {
     domain: domain
   },
   apiGateway: {
+    loginUri: '/api/auth/login',
     addBizLineUri: '/api/v1/pipeline/info',
     getBizLinesUri: '/api/v1/pipeline/list',
     deleteBizLineUri: '/api/v1/pipeline/info',
