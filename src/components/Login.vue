@@ -44,19 +44,23 @@ export default {
   },
   methods: {
     onSubmit () {
-      console.log(this.loginForm)
       Backends.login(this.loginForm, res => {
         if (Backends.ok(res)) {
           // set token
           const token = res.data.data.token
           if (token) {
             Setitem(Settings.constant.lsTokenName, token)
+            Setitem(Settings.constant.realName, res.data.data.realName)
+            Setitem(Settings.constant.username, res.data.data.username)
+
             // router next
             const redirect = this.$route.query.redirect
             this.$router.push(redirect)
+          } else {
+            this.$message('用户名或密码有误')
           }
         } else {
-          this.$message(res.data.message)
+          this.$message(res.data.msg)
         }
       }, res => {
         if (res instanceof Error) {
@@ -64,6 +68,7 @@ export default {
         } else {
           console.log(res)
           console.log(res.status)
+          this.$message(res.message)
         }
       })
     }

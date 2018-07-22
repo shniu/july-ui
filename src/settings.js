@@ -25,7 +25,9 @@ const settings = {
     succeed: 0
   },
   constant: {
-    lsTokenName: 'TOKEN_ID'
+    lsTokenName: 'TOKEN_ID',
+    realName: 'REALNAME',
+    username: 'USERNAME'
   }
 }
 

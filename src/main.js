@@ -25,11 +25,11 @@ Vue.config.productionTip = false
 // axios setting
 axios.defaults.baseURL = Settings.domain.domain
 axios.interceptors.request.use((config) => {
-  const token = Getitem('token')
+  const token = Getitem(Settings.constant.lsTokenName)
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
   } else {
-    Removeitem('token')
+    Removeitem(Settings.constant.lsTokenName)
   }
   // add domain
   config.baseURL = Settings.domain.domain
