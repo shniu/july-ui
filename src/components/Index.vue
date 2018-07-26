@@ -7,10 +7,14 @@
             <a href="#">July</a>
           </div>
           <div class="panel">
-            <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+            <!-- <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
               <el-menu-item index="1">首页</el-menu-item>
               <el-menu-item index="2">登录</el-menu-item>
-            </el-menu>
+            </el-menu> -->
+            <span class="realname">{{ realName }}</span>
+            <span class="logout">
+              <a href="#" @click.prevent="logout">退出</a>
+            </span>
           </div>
         </div>
       </el-header>
@@ -66,16 +70,6 @@
                     </timeline>
                   </el-col>
                   <el-col :span="12">
-                    <!--<timeline>
-                      <timeline-title>2018-08-11 12:12:23</timeline-title>
-                      <timeline-item bg-color="#9dd8e0">与中银老总碰面，初步达成合作一项</timeline-item>
-                      <timeline-item :hollow="true">开始接触，寻找到关键人xxx</timeline-item>
-                      <timeline-item bg-color="#9dd8e0">与中银老总碰面，初步达成合作一项</timeline-item>
-                      <timeline-title>2018-08-10 12:12:23</timeline-title>
-                      <timeline-item bg-color="#9dd8e0">与中银老总碰面，初步达成合作一项</timeline-item>
-                      <timeline-item :hollow="true">开始接触，寻找到关键人xxx</timeline-item>
-                      <timeline-item bg-color="#9dd8e0">与中银老总碰面，初步达成合作一项</timeline-item>
-                    </timeline>-->
                     <todo v-bind:bizId="props.row.bizId"></todo>
                   </el-col>
                 </el-row>
@@ -108,12 +102,6 @@
                   size="mini"
                   type="danger"
                   @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-                <el-button
-                  size="mini"
-                  @click="handleEdit(scope.$index, scope.row)">添加进展</el-button>
-                <el-button
-                  size="mini"
-                  @click="handleEdit(scope.$index, scope.row)">添加todo</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -138,6 +126,7 @@ import Backends from '@/services/backend'
 import Settings from '@/settings'
 import {Timeline, TimelineItem, TimelineTitle} from 'vue-cute-timeline'
 import Todo from '@/components/todo/Index'
+import { Getitem, Removeitem } from '@/services/common'
 // import Utils from '@/utils/index'
 export default {
   name: 'Index',
@@ -149,6 +138,7 @@ export default {
   },
   data () {
     return {
+      realName: Getitem(Settings.constant.realName),
       activeIndex: '1',
       newLine: {
         topic: '',
@@ -166,6 +156,12 @@ export default {
     this.refreshBizPipelines()
   },
   methods: {
+    logout () {
+      Removeitem(Settings.constant.lsTokenName)
+      Removeitem(Settings.constant.realName)
+      Removeitem(Settings.constant.username)
+      this.$router.push('/login')
+    },
     refreshBizPipelines () {
       let uri = Settings.apiGateway.getBizLinesUri + '/0/10'
       Backends.getBizLines(uri, res => {
@@ -237,6 +233,11 @@ export default {
     }
     .panel {
       float: right;
+
+      span {
+        display: inline-block;
+        padding: 1rem 0 0 1rem;
+      }
     }
   }
 </style>

@@ -31,9 +31,8 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+  const token = Getitem(Settings.constant.lsTokenName)
   if (to.meta.requiresAuth) {
-    const token = Getitem(Settings.constant.lsTokenName)
-    console.log(to.fullPath)
     if (token) {
       next()
     } else {
@@ -43,6 +42,12 @@ router.beforeEach((to, from, next) => {
       })
     }
   } else {
+    // 如果已经登录再去访问不需要登录的页面就直接跳转到首页
+    if (token) {
+      next({
+        path: '/'
+      })
+    }
     next()
   }
 })

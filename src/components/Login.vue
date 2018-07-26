@@ -52,9 +52,8 @@ export default {
             Setitem(Settings.constant.lsTokenName, token)
             Setitem(Settings.constant.realName, res.data.data.realName)
             Setitem(Settings.constant.username, res.data.data.username)
-
             // router next
-            const redirect = this.$route.query.redirect
+            const redirect = (this.$route.query && this.$route.query.redirect) || '/'
             this.$router.push(redirect)
           } else {
             this.$message('用户名或密码有误')
