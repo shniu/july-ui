@@ -19,7 +19,10 @@ const settings = {
     getTodosUri: '/api/v1/${ bizId }/todo',
     /* eslint-disable */
     deleteTodoUri: '/api/v1/todo/${tid}',
-    toggleTodoStatusUri: '/api/v1/todo'
+    toggleTodoStatusUri: '/api/v1/todo',
+    queryProgressUri: '/api/v1/progress/${bizId}',
+    addProgressUri: '/api/v1/progress',
+    queryInChargeUserUri: '/api/v1/user/inCharge/list'
   },
   responseCode: {
     succeed: 0

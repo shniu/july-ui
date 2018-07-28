@@ -1,7 +1,7 @@
 <template>
     <div>
       <div class="todo-header">
-        <input class="todo-new"
+        <input class="input-july"
                autofocus autocomplete="off"
                placeholder="What needs to be done?"
                v-model="newTodo"
@@ -104,28 +104,6 @@ export default {
 <style scoped lang="less">
 @destroy-color: #af5b5e;
 
-.todo-new, .edit {
-  position: relative;
-  margin: 0;
-  width: 100%;
-  font-size: 24px;
-  font-family: inherit;
-  font-weight: inherit;
-  line-height: 1.4em;
-  color: inherit;
-  padding: 6px;
-  border: 1px solid #999;
-  box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.todo-new, .todo-new:focus {
-  padding: 10px;
-  border: none;
-  background: rgba(0, 0, 0, 0.003);
-  box-shadow: inset 0 -2px 1px rgba(0,0,0,0.1);
-}
 .todo-main {
   position: relative;
   z-index: 2;

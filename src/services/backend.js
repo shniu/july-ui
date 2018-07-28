@@ -1,6 +1,11 @@
 import Settings from '../settings'
 import Vue from 'vue'
 
+function compileUri (uriTemplate, options) {
+  let compiled = Vue.lodash.template(uriTemplate)
+  return compiled(options)
+}
+
 export default {
   ok (res) {
     return res && res.data && res.data.code === Settings.responseCode.succeed
@@ -78,11 +83,9 @@ export default {
    * 删除todo
    */
   deleteTodo (tid, success, exp) {
-    let compiled = Vue.lodash.template(Settings.apiGateway.deleteTodoUri)
-    const uri = compiled({tid: tid})
     Vue.axios({
       method: 'delete',
-      url: uri
+      url: compileUri(Settings.apiGateway.deleteTodoUri, {tid: tid})
     }).then(success).catch(exp)
   },
 
@@ -94,6 +97,37 @@ export default {
       method: 'put',
       url: Settings.apiGateway.toggleTodoStatusUri,
       data: data
+    }).then(success).catch(exp)
+  },
+
+  /**
+   * 查询进展
+   */
+  getBizProgress (bizId, success, exp) {
+    Vue.axios({
+      method: 'get',
+      url: compileUri(Settings.apiGateway.queryProgressUri, {bizId: bizId})
+    }).then(success).catch(exp)
+  },
+
+  /**
+   * 添加进展
+   */
+  addBizProgress (data, success, exp) {
+    Vue.axios({
+      method: 'post',
+      url: Settings.apiGateway.addProgressUri,
+      data: data
+    }).then(success).catch(exp)
+  },
+
+  /**
+   * 查询负责人列表
+   */
+  queryInChargeUser (success, exp) {
+    Vue.axios({
+      method: 'get',
+      url: Settings.apiGateway.queryInChargeUserUri
     }).then(success).catch(exp)
   }
 }
