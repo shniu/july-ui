@@ -16,7 +16,7 @@ if [ $1 == "commit" ]
 then
     git add .
     git pull
-    git commit -m $2
+    git commit -m "$2"
     exit 1
 fi
 
