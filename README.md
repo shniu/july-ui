@@ -49,6 +49,10 @@ TinyURL 项目是一个短网址服务，主要功能是将长网址转成短网
 
 常用的公共编码方式
 
+#### 小工具
+
+- [adr-tools](https://github.com/npryce/adr-tools/blob/master/INSTALL.md) [轻量级架构决策记录](https://www.thoughtworks.com/radar/techniques/lightweight-architecture-decision-records)工具
+
 ## FAQ
 
 常见问题列表
