@@ -6,7 +6,19 @@
  * User Manual available at https://docs.gradle.org/5.3/userguide/tutorial_java_projects.html
  */
 
+buildscript {
+    repositories {
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    //dependencies {
+        //classpath "gradle.plugin.com.avast.gradle:gradle-docker-compose-plugin:1"
+        //classpath "org.owasp:dependency-check-gradle:5.2.1"
+        //classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:2.0.0"
+    //}
+}
+
 plugins {
+    id 'idea'
     // Apply the java plugin to add support for Java
     id 'java'
 
@@ -14,10 +26,19 @@ plugins {
     id 'application'
 }
 
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+version = '0.0.1'
+
+//allprojects {
+//    apply plugin 'idea'
+//}
+
 repositories {
     // Use jcenter for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+    mavenCentral()
 }
 
 dependencies {
