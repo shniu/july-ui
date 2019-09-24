@@ -17,7 +17,7 @@ import javax.validation.constraints.NotBlank;
 public class LinksResource {
 
     @GetMapping(value = "/short/{originUrl}")
-    public String createLink(@PathVariable @Valid @NotBlank String originUrl) {
+    public String getShortUrl(@PathVariable @Valid @NotBlank final String originUrl) {
         return String.format("Your url is %s", originUrl);
     }
 }

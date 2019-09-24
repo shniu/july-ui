@@ -3,8 +3,24 @@ plugins {
     id "org.springframework.boot" version "2.1.8.RELEASE"
 }
 
-println "sbv: $ext.springBootVersion"
+// println "sbv: $ext.springBootVersion"
 def sbv = ext.springBootVersion
+
+style {
+    excludePackages = [
+    ]
+    excludeClasses = [
+        "com.github.shniu.bootstrap.TinyBootstrap"
+    ]
+}
+
+coverage {
+    excludePackages = [
+    ]
+    excludeClasses = [
+        "com.github.shniu.bootstrap.TinyBootstrap"
+    ]
+}
 
 application {
     mainClassName = "com.github.shniu.bootstrap.TinyBootstrap"

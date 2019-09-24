@@ -92,6 +92,18 @@ subprojects {
     wrapper {
         gradleVersion = '5.6'
     }
+
+    apply from: "$rootDir/gradle/config/scripts/checkstyle.gradle"
+    apply from: "$rootDir/gradle/config/scripts/coverage.gradle"
+
+    style.excludePackages = [
+    ]
+    style.excludeClasses = [
+    ]
+    coverage.excludePackages = [
+    ]
+    coverage.excludeClasses = [
+    ]
 }
 
 //configure(subprojects - project(':tiny-bootstrap')) {
