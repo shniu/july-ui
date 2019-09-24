@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
-if [ $1 == "status" ]
+if [[ $1 == "status" ]]
 then
     git status
     exit 1
 fi
 
-if [ $1 == "add" ]
+if [[ $1 == "add" ]]
 then
     git add .
     exit 1
 fi
 
-if [ $1 == "commit" ]
+if [[ $1 == "commit" ]]
 then
     git add .
     git pull
@@ -20,7 +20,7 @@ then
     exit 1
 fi
 
-if [ $1 == "push" ]
+if [[ $1 == "push" ]]
 then
     git add .
     git pull

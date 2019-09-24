@@ -43,6 +43,19 @@ TinyURL 项目是一个短网址服务，主要功能是将长网址转成短网
 
 技术架构图
 
+模块划分：
+
+```
+-/
+  - links-api
+  - links-svc
+  - analysis-api
+  - analysis-svc
+  - tiny-bootstrap
+  - frontend/
+    - app
+```
+
 ## 部署架构
 
 部署架构图

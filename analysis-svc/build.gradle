@@ -1,0 +1,6 @@
+dependencies {
+    implementation project(':tiny-common-lib')
+    implementation project(':tiny-spring-common')
+
+    implementation project(':analysis-api')
+}

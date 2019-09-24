@@ -1,0 +1,14 @@
+plugins {
+    id 'java-library'
+}
+
+def sbv = ext.springBootVersion
+
+dependencies {
+    api platform("org.springframework.boot:spring-boot-dependencies:$sbv")
+
+    api('org.springframework.boot:spring-boot-starter-web')
+    api("org.springframework.boot:spring-boot-starter-aop")
+    api("org.springframework.boot:spring-boot-starter-jdbc")
+    api("org.springframework.boot:spring-boot-starter-amqp")
+}

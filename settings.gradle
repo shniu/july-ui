@@ -8,3 +8,11 @@
  */
 
 rootProject.name = 'tinyurl'
+include 'tiny-bootstrap'
+include 'links-api'
+include 'links-svc'
+include 'analysis-api'
+include 'analysis-svc'
+include 'tiny-spring-common'
+include 'tiny-common-lib'
+

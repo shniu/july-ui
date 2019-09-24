@@ -1,0 +1,26 @@
+plugins {
+    id 'application'
+    id "org.springframework.boot" version "2.1.8.RELEASE"
+}
+
+println "sbv: $ext.springBootVersion"
+def sbv = ext.springBootVersion
+
+application {
+    mainClassName = "com.github.shniu.bootstrap.TinyBootstrap"
+    // 设置远程调试
+    applicationDefaultJvmArgs = ["-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"]
+}
+
+dependencies {
+    implementation platform("org.springframework.boot:spring-boot-dependencies:$sbv")
+
+    implementation project(':tiny-common-lib')
+    implementation project(':tiny-spring-common')
+    implementation project(':links-svc')
+    implementation project(':analysis-svc')
+}
+
+bootJar {
+    launchScript()
+}
