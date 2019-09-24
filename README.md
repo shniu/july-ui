@@ -75,4 +75,11 @@ TinyURL 项目是一个短网址服务，主要功能是将长网址转成短网
 
 - 如何做好迭代0？
 
-请参考[开发实践-开发者的迭代0](https://insights.thoughtworks.cn/backend-development-iteration0/)
+请参考:
+1. [开发实践-开发者的迭代0](https://insights.thoughtworks.cn/backend-development-iteration0/)
+2. [迭代0：启动开发之前你应该准备什么](https://time.geekbang.org/column/article/77294)
+3. [一个好的项目自动化应该是什么样子的](https://time.geekbang.org/column/article/86561)
+
+代码仓库模版参考：
+1. [geektime-zero](https://github.com/dreamhead/geektime-zero)
+2. [ecommerce-order-service](https://github.com/e-commerce-sample/ecommerce-order-service)
