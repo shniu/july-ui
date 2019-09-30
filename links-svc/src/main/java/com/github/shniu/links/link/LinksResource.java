@@ -1,5 +1,7 @@
 package com.github.shniu.links.link;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +16,11 @@ import javax.validation.constraints.NotBlank;
  */
 @RestController
 @RequestMapping("/links/v1")
+@Api(tags = "Links transfer uri")
 public class LinksResource {
 
     @GetMapping(value = "/short/{originUrl}")
+    @ApiOperation(value = "短链接生成接口", notes = "对外提供短链接生成功能，传入长链接返回短链接")
     public String getShortUrl(@PathVariable @Valid @NotBlank final String originUrl) {
         return String.format("Your url is %s", originUrl);
     }
