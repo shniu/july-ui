@@ -5,6 +5,8 @@ import com.google.common.base.Strings;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.util.Date;
+
 /**
  * @author shniu
  * @date 2019/09/30 11:31:47
@@ -15,8 +17,10 @@ public class Link {
     // 原始链接
     private String originUrl;
     private String shortUrl;
+    private Date createdOn;
+    private Date updatedOn;
 
-    private LinkConverter linkConverter;
+    private transient LinkConverter linkConverter;
 
     /**
      * 转换成短链接.
@@ -29,7 +33,7 @@ public class Link {
         }
 
         // 根据转换算法获取到短网址
-        shortUrl = linkConverter.convert();
+        shortUrl = linkConverter.convert(originUrl);
 
         // 根据短网址来查询是否有冲突
         //   关系数据库中存储，加唯一索引查询

@@ -5,5 +5,11 @@ package com.github.shniu.links.link;
  * @date 2019/09/30 11:41:59
  */
 public interface LinkConverter {
-    String convert();
+    /**
+     * 链接转换.
+     *
+     * @param url 待转换的url
+     * @return 转换后的短链接
+     */
+    String convert(String url);
 }
